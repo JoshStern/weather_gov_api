@@ -2731,11 +2731,19 @@ components:
                 gridId:
                     type: string
                 gridX:
-                    type: integer
-                    minimum: 0
+                    description: >
+                        The X coordinate for the forecast grid zone. This value is a string for the /gridpoints/{wfo}/{x},{y} endpoint and a non-negative integer for the others.
+                        This behavior may change and the gridpoints endpoint will conform to the integer value.
+                    oneOf:
+                        - integer
+                        - string
                 gridY:
-                    type: integer
-                    minimum: 0
+                    description: >
+                        The Y coordinate for the forecast grid zone. This value is a string for the /gridpoints/{wfo}/{x},{y} endpoint and a non-negative integer for the others.
+                        This behavior may change and the gridpoints endpoint will conform to the integer value.
+                    oneOf:
+                        - integer
+                        - string
                 weather:
                     type: object
                     properties:
@@ -3070,7 +3078,7 @@ components:
                     3. Duration and end time
 
                 The string "NOW" can also be used in place of a start/end time.
-            oneOf:
+            anyOf:
                 -
                     type: string
                     pattern: ^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-]\d{2}:?\d{2}?)|NOW)\/(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-]\d{2}:?\d{2}?)|NOW)$
